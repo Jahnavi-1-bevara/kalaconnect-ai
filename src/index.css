@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-craft-terracotta: #C85A32;
+  --color-craft-terracotta-dark: #A44220;
+  --color-craft-terracotta-light: #F8EFE9;
+  --color-craft-linen: #FDFBF7;
+  --color-craft-stone: #F5EFEB;
+  --color-craft-sand: #EAE1D5;
+  --color-craft-clay: #8D5B4C;
+  --color-craft-charcoal: #1A1D1B;
+  --color-craft-muted: #636A66;
+  --color-craft-brass: #B8860B;
+  --color-craft-brass-light: #FDF8EC;
+  --color-craft-forest: #2A4736;
+  --color-craft-forest-light: #EBF2EE;
+
+  --font-serif: "Playfair Display", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --shadow-craft-sm: 0 1px 3px rgba(27, 30, 28, 0.05);
+  --shadow-craft-md: 0 4px 12px rgba(27, 30, 28, 0.08);
+  --shadow-craft-lg: 0 12px 28px rgba(27, 30, 28, 0.12);
+  --shadow-craft-xl: 0 20px 40px rgba(27, 30, 28, 0.15);
+}
+
+body {
+  background-color: var(--color-craft-linen);
+  color: var(--color-craft-charcoal);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-serif);
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EFEB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9CEBE;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C85A32;
+}
+
+/* Subtle checkerboard pattern for transparent cutouts */
+.bg-transparency-grid {
+  background-image: 
+    linear-gradient(45deg, #eee 25%, transparent 25%), 
+    linear-gradient(-45deg, #eee 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #eee 75%), 
+    linear-gradient(-45deg, transparent 75%, #eee 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
