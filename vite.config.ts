@@ -9,6 +9,23 @@ import { removeBackground } from '@imgly/background-removal-node';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function githubPagesSpaPlugin(): Plugin {
+  return {
+    name: 'github-pages-spa',
+    closeBundle() {
+      try {
+        const distIndex = path.resolve(__dirname, 'dist', 'index.html');
+        const dist404 = path.resolve(__dirname, 'dist', '404.html');
+        if (fs.existsSync(distIndex)) {
+          fs.copyFileSync(distIndex, dist404);
+        }
+      } catch {
+        // Ignore file copy errors
+      }
+    },
+  };
+}
+
 function segmentationApiPlugin(): Plugin {
   const handler = async (req: any, res: any, next: any) => {
     if (req.url === '/api/segment' && req.method === 'POST') {
@@ -76,26 +93,9 @@ function segmentationApiPlugin(): Plugin {
   };
 }
 
-function githubPagesSpaPlugin(): Plugin {
-  return {
-    name: 'github-pages-spa',
-    closeBundle() {
-      try {
-        const distIndex = path.resolve(__dirname, 'dist', 'index.html');
-        const dist404 = path.resolve(__dirname, 'dist', '404.html');
-        if (fs.existsSync(distIndex)) {
-          fs.copyFileSync(distIndex, dist404);
-        }
-      } catch {
-        // Ignore file copy errors
-      }
-    },
-  };
-}
-
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/kalaconnect-ai/',
+  base: process.env.VITE_BASE || './',
   plugins: [react(), segmentationApiPlugin(), githubPagesSpaPlugin()],
   server: {
     host: '0.0.0.0',

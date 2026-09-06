@@ -173,7 +173,7 @@ function getRouteInfo(): { view: string; role?: UserRole } {
     return ROUTE_VIEW_MAP[path];
   }
 
-  // 2. Subpath deployment match (e.g. /handcraft/marketplace or /repo-name/artisan/dashboard)
+  // 2. Subpath deployment match (e.g. /handcraft/marketplace or /kalaconnect-ai/artisan/dashboard)
   for (const [route, info] of Object.entries(ROUTE_VIEW_MAP)) {
     if (route !== '/' && (path.endsWith(route) || path.toLowerCase().endsWith(route.toLowerCase()))) {
       return info;

@@ -72,8 +72,9 @@ const server = http.createServer(async (req, res) => {
 
   // Static file serving for SPA
   let reqPath = req.url.split('?')[0];
-  // Support subpath deployment testing (e.g. /handcraft/ or any /<repo-name>/)
-  if (reqPath.startsWith('/handcraft')) {
+  if (reqPath.startsWith('/kalaconnect-ai')) {
+    reqPath = reqPath.replace(/^\/kalaconnect-ai/, '') || '/';
+  } else if (reqPath.startsWith('/handcraft')) {
     reqPath = reqPath.replace(/^\/handcraft/, '') || '/';
   }
   let filePath = path.join(DIST_DIR, reqPath);
